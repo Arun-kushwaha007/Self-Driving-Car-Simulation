@@ -1,6 +1,6 @@
 # 📘 Self-Driving Car Simulation
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Here-brightgreen?style=for-the-badge&logo=github)](https://www.aryansoni.tech/projects/self-driving-car/index.html)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Here-brightgreen?style=for-the-badge&logo=github)](https://self-driving-car-simulation-five.vercel.app/)
 
 ## General Overview
 
