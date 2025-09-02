@@ -1,127 +1,104 @@
 # 📘 Self-Driving Car Simulation
 
-## 🚗 Overview
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Here-brightgreen?style=for-the-badge&logo=github)](https://www.aryansoni.tech/projects/self-driving-car/index.html)
 
-**Self-Driving Car Simulation** is a browser-based project that demonstrates the fundamentals of neural networks, genetic algorithms, and sensor-based control systems. Built entirely with vanilla JavaScript, it provides an interactive environment where AI-controlled cars learn to navigate roads and avoid obstacles, all visualized in real-time.
+## General Overview
 
----
+### Project Description
 
-## 📝 Project Description
+This project is a browser-based simulation of a self-driving car built from scratch without any external machine learning libraries. It features a car that learns to navigate a road with traffic by using a simple feedforward neural network and a genetic algorithm. The project includes a real-time visualization of the car's sensor data and the underlying neural network activity.
 
-This simulation features:
-- **AI Cars:** Controlled by a simple feedforward neural network and evolved using a genetic algorithm.
-- **Manual Car:** User-controllable for direct comparison and experimentation.
-- **Real-Time Visualization:** See sensor data, neural network activity, and car behavior as it happens.
+### What the project does
 
-The project is designed as an educational tool to make abstract machine learning concepts tangible and engaging.
+The simulation generates a population of cars ("AI" controlled) and one user-controllable car. The AI cars use sensors to perceive their environment and a neural network (their "brain") to make driving decisions (accelerate, turn, reverse). When cars crash, they are disabled. The simulation is designed to run over generations, where the "brain" of the most successful car can be saved and used to "mutate" a new generation of cars, demonstrating a simple form of a genetic algorithm.
 
----
+### Why it was created / problem it solves
 
-## 🎯 Features
+This project was created as an educational tool to demonstrate and understand the core concepts of neural networks, genetic algorithms, and sensor-based control systems in a visual and interactive way. It solves the problem of abstract machine learning concepts being hard to grasp by providing a concrete, hands-on application that can be run, modified, and observed directly in the browser.
 
-- **Self-Driving AI:** AI cars learn to drive and avoid collisions.
-- **Neural Network Engine:** Custom, dependency-free feedforward neural network.
-- **Genetic Algorithm:** Save and mutate the "best" car's brain for evolutionary learning.
-- **Real-Time Visualization:** View sensors, road, traffic, and neural network structure/activation.
-- **Manual Control:** Drive a car using keyboard arrow keys.
-- **Collision Detection:** Polygon-based, efficient and accurate.
-- **Local Storage Persistence:** Save and load the best neural network brain.
+### Core features and functionality
 
----
+*   **Self-Driving AI:** AI-controlled cars learn to navigate roads and avoid obstacles.
+*   **Neural Network Engine:** A simple, dependency-free feedforward neural network written in plain JavaScript.
+*   **Genetic Algorithm:** The ability to save the "best" car's brain and use it to generate new, slightly mutated brains for the next generation of cars.
+*   **Real-time Visualization:** The simulation visualizes the car's sensors, the road, traffic, and the neural network's structure and activation in real-time.
+*   **Manual Control:** A user can control one car with the keyboard for comparison or for generating training data.
+*   **Collision Detection:** Simple but effective polygon-based collision detection.
+*   **Local Storage Persistence:** The best-performing neural network brain can be saved in the browser's local storage.
 
 ## 🛠️ Tech Stack
 
-- **Languages:** HTML5, CSS3, JavaScript (ES6+)
-- **Frameworks/Libraries:** None (vanilla JavaScript)
-- **Tools:**
-  - HTML5 Canvas for rendering and visualization
-  - Browser Local Storage for saving model progress
-
----
+*   **Languages:** HTML5, CSS3, JavaScript (ES6+)
+*   **Frameworks/Libraries:** None. This project is built with vanilla JavaScript to focus on the underlying algorithms.
+*   **Tools:**
+    *   HTML5 Canvas for rendering and visualization.
+    *   Browser Local Storage for saving model progress.
 
 ## 📂 Setup & Usage
 
-### Installation
+### Installation Instructions
 
-No installation required! The project runs directly in any modern web browser.
+No installation is required. The project is designed to run directly in any modern web browser.
 
-1. **Clone the repository:**
-   ```sh
-   git clone <repository-url>
-   ```
-2. **Navigate to the project directory:**
-   ```sh
-   cd <repository-directory>
-   ```
-3. **Open `index.html` in your browser.**
+1.  Clone the repository to your local machine:
+    ```bash
+    git clone https://github.com/Arun-kushwaha007/Self-Driving-Car-Simulation/
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd Self-Driving-Car-Simulation
+    ```
 
 ### Usage Guide
 
-- The simulation starts automatically.
-- **Manual Car:** Use arrow keys to drive the blue car.
-- **AI Cars:** Observe as grey cars learn to drive.
-- **Save Progress:** Click the 💾 icon to save the best-performing car's brain.
-- **Discard Progress:** Click the 🗑️ icon to clear saved brain data.
+1.  Open the `index.html` file in a web browser.
+2.  The simulation will start automatically.
+3.  You can drive the blue car using the **arrow keys**.
+4.  Observe the grey AI cars as they learn to drive.
+5.  **Saving Progress:** Click the **Save** icon (💾) to save the brain of the best-performing car (the one that traveled the farthest) to your browser's local storage. On the next page load, new AI cars will be mutated versions of this saved brain.
+6.  **Discarding Progress:** Click the **Trash** icon (🗑️) to clear the saved brain from local storage.
 
----
+## 🧠 Core Computer Science Concepts Used
 
-## 🧠 Core Computer Science Concepts
+This project is a practical application of several fundamental computer science concepts.
 
 ### Object-Oriented Programming (OOP)
 
-- **Classes & Encapsulation:**  
-  - `Car` ([client/items/car.js]): Manages car state and actions.
-  - `Sensor` ([client/controller/sensor.js]): Handles ray-casting sensors.
-  - `NeuralNetwork` ([client/network/network.js]): Implements the car's brain.
-  - `Road` ([client/items/road.js]): Manages road geometry and drawing.
-- **Composition:**  
-  - Cars are composed of sensors and neural networks for modularity.
+The entire codebase is structured using OOP principles, making it modular and easy to understand.
+
+*   **Classes & Encapsulation:** The system is broken down into distinct classes, each encapsulating its own data and behavior.
+    *   `Car` (`client/items/car.js`): Manages the car's state (position, speed, angle) and actions (moving, drawing, damage assessment).
+    *   `Sensor` (`client/controller/sensor.js`): Encapsulates the logic for the car's ray-casting sensors.
+    *   `NeuralNetwork` (`client/network/network.js`): Represents the car's brain, encapsulating all the logic for network layers, weights, biases, and the feedforward process.
+    *   `Road` (`client/items/road.js`): Manages the geometry and drawing of the road.
+*   **Composition:** The project favors composition over inheritance. A `Car` object is *composed* of a `Sensor` object and a `NeuralNetwork` object, creating a flexible and powerful relationship.
 
 ### Algorithms
 
-- **Feedforward Neural Network:**  
-  - Processes sensor readings to control car movement.
-- **Genetic Algorithm:**  
-  - Selection: The car that travels farthest is considered "best."
-  - Mutation: New cars are generated as mutated versions of the best brain.
-- **Ray Casting & Line Intersection:**  
-  - Sensor rays detect obstacles using computational geometry.
+*   **Feedforward Neural Network:** This is the core of the AI. The `NeuralNetwork.feedForward` method in `client/network/network.js` takes sensor readings as input and propagates them through the network's layers to produce an output, which dictates the car's controls. Each layer's calculation involves a weighted sum of inputs followed by a simple step activation function.
+*   **Genetic Algorithm (Simplified):** The project uses key elements of a genetic algorithm for training.
+    *   **Selection:** The `main.js` script identifies the "best" car (fittest individual) based on its survival distance.
+    *   **Reproduction/Mutation:** The `NeuralNetwork.mutate` method takes a network and applies slight random changes to its weights and biases. When a "best brain" is saved, new cars are generated as mutated offspring of that brain, allowing the system to "evolve" better driving skills over time.
+*   **Ray Casting & Line Intersection:** The `Sensor` class implements a ray-casting algorithm to perceive the environment. In `client/utils/utils.js`, the `getIntersection` function implements a standard line-segment intersection algorithm to calculate the exact point where a sensor ray collides with a road border or another car. This is a classic algorithm from **computational geometry**.
 
 ### Data Structures
 
-- **Arrays:**  
-  - 1D: Traffic cars, road borders, sensor readings, neurons.
-  - 2D: Neural network weights.
+*   **Arrays:** Arrays are the primary data structure used throughout the project.
+    *   **1D Arrays:** Used to store a list of traffic cars, road borders, sensor readings, and the neurons in a network layer (`inputs`, `outputs`, `biases`).
+    *   **2D Arrays (Arrays of Arrays):** Used in `client/network/network.js` to represent the `weights` connecting one layer of the neural network to the next.
 
 ### Architecture
 
-- **Modular Design:**  
-  - Clean directory structure (`items`, `controller`, `network`, `utils`) for separation of concerns and maintainability.
-
----
+*   **Modular Design:** The project is organized into a clean directory structure (`items`, `controller`, `network`, `utils`) that separates concerns. This makes the code easier to navigate, maintain, and debug. For example, all neural network logic is contained within the `network` directory.
 
 ## ✅ Testing
 
-Currently, there are no automated tests. Verification is performed visually by running the simulation and observing car behavior.
+There are currently no automated tests for this project. Verification is done visually by running the simulation.
 
----
+## 🤝 Contribution Guidelines
 
-## 📄 License
+Contributions are welcome! Please feel free to fork the repository, make changes, and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
 
-This project is open-source and available for educational and personal use. See [LICENSE](LICENSE) for details.
+<!-- ## 📄 License -->
 
----
-
-## 🙌 Contributing
-
-Contributions are welcome! Please open issues or submit pull requests to help improve the project.
-
----
-
-## 📬 Contact
-
-For questions or feedback, please open an issue on GitHub or contact the project maintainer.
-
----
-
-Enjoy exploring and learning with the Self-Driving Car Simulation!
+<!-- This project is licensed under the MIT License. See the `LICENSE` file for details. -->
