@@ -9,16 +9,21 @@ class Sensor{
         this.readings=[];
     }
 
-    update(roadBorders, traffic){
+    update(roadBorders,traffic){
         this.#castRays();
         this.readings=[];
-        for(let i=0;i<this.rayCount;i++){
-            const reading=this.#getReading(this.rays[i],roadBorders, traffic);
-            this.readings.push(reading);
+        for(let i=0;i<this.rays.length;i++){
+            this.readings.push(
+                this.#getReading(
+                    this.rays[i],
+                    roadBorders,
+                    traffic
+                )
+            );
         }
     }
 
-    #getReading(ray,roadBorders, traffic){
+    #getReading(ray,roadBorders,traffic){
         let touches=[];
 
         for(let i=0;i<roadBorders.length;i++){
@@ -32,6 +37,7 @@ class Sensor{
                 touches.push(touch);
             }
         }
+
         for(let i=0;i<traffic.length;i++){
             const poly=traffic[i].polygon;
             for(let j=0;j<poly.length;j++){
@@ -46,7 +52,6 @@ class Sensor{
                 }
             }
         }
-        
 
         if(touches.length==0){
             return null;
@@ -66,10 +71,12 @@ class Sensor{
                 this.rayCount==1?0.5:i/(this.rayCount-1)
             )+this.car.angle;
 
-            const start={x:this.car.x,y:this.car.y};
+            const start={x:this.car.x, y:this.car.y};
             const end={
-                x:this.car.x-Math.sin(rayAngle)*this.rayLength,
-                y:this.car.y-Math.cos(rayAngle)*this.rayLength
+                x:this.car.x-
+                    Math.sin(rayAngle)*this.rayLength,
+                y:this.car.y-
+                    Math.cos(rayAngle)*this.rayLength
             };
             this.rays.push([start,end]);
         }
@@ -108,5 +115,5 @@ class Sensor{
             );
             ctx.stroke();
         }
-    }   
+    }        
 }
